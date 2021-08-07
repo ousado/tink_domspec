@@ -31,6 +31,10 @@ typedef TimeAttr = {>GlobalAttr<Style>,
   @:optional var datetime:DateTime;
 }
 
+typedef ColumnAttr = {>GlobalAttr<Style>,
+  @:optional var span:Int;
+}
+
 abstract DateTime(String) {
   inline function new(v) this = v;
   @:from static function ofDate(d:Date)
