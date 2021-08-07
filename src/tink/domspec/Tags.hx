@@ -67,7 +67,7 @@ typedef Tags = {
     var summary:GlobalAttr<Style>;
     var sub:GlobalAttr<Style>;
     var sup:GlobalAttr<Style>;
-    var colgroup:ColumnAttr;
+    @:element(js.html.TableColElement) var colgroup:ColumnAttr;
     @:element(js.html.svg.SVGElement) var svg:SvgAttr;
     @:element(js.html.svg.PolylineElement) var polyline:PolylineAttr;
     @:element(js.html.svg.PathElement) var path:PathAttr;
@@ -85,7 +85,7 @@ typedef Tags = {
     // var area:GlobalAttr<Style>; //a bit hard to make type safe
     // var base:GlobalAttr<Style>; //not needed, I hope
     var br:GlobalAttr<Style>;
-    var col:ColumnAttr; //is more of an HTML4 thing
+    @:element(js.html.TableColElement) var col:ColumnAttr; //is more of an HTML4 thing
     var embed:EmbedAttr;
     var hr:GlobalAttr<Style>;
     var img:ImageAttr;
