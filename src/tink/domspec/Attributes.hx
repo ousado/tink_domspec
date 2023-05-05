@@ -1,6 +1,7 @@
 package tink.domspec;
 
 import tink.domspec.Style;
+
 typedef GlobalAttr<Style> = {
   @:global @:html('class') @:optional var className(default, never):ClassName;
   @:global @:optional var id(default, never):String;
@@ -18,7 +19,15 @@ typedef GlobalAttr<Style> = {
   @:global @:optional var role(default, never):AriaRole;
 }
 
+typedef DataAttr = {>GlobalAttr<Style>,
+  @:optional var value(default, never):String;
+}
+
 typedef DetailsAttr = {>GlobalAttr<Style>,
+  @:optional var open(default, never):Bool;
+}
+
+typedef DialogAttr = {>GlobalAttr<Style>,
   @:optional var open(default, never):Bool;
 }
 
@@ -28,7 +37,7 @@ typedef FieldSetAttr = {>GlobalAttr<Style>,
 }
 
 typedef TimeAttr = {>GlobalAttr<Style>,
-  @:optional var datetime:DateTime;
+  @:optional var dateTime:DateTime;
 }
 
 typedef ColumnAttr = {>GlobalAttr<Style>,
@@ -37,8 +46,14 @@ typedef ColumnAttr = {>GlobalAttr<Style>,
 
 abstract DateTime(String) {
   inline function new(v) this = v;
+
   @:from static function ofDate(d:Date)
     return new DateTime(d.toString());
+
+  @:from static function ofFloat(f:Float) {
+    final parts = DateTools.parse(f);
+    return new DateTime('P${parts.days}DT${parts.hours}H${parts.minutes}M${parts.seconds}S');
+  }
 }
 
 typedef ObjectAttr = {>GlobalAttr<Style>,
@@ -79,11 +94,13 @@ typedef InputAttr = {>GlobalAttr<Style>,
   @:optional var min(default, never):String;
   @:optional var step(default, never):String;
   @:optional var maxLength(default, never):Int;
+  @:optional var minLength(default, never):Int;
   @:optional var pattern(default, never):String;
   @:optional var accept(default, never):String;
   @:optional var multiple(default, never):Bool;
   @:optional var capture(default, never):String;
   @:optional var size(default, never):Int;
+  @:optional var list(default, never):String;
 }
 
 @:enum abstract InputAutocomplete(String) to String from String {
@@ -94,6 +111,7 @@ typedef InputAttr = {>GlobalAttr<Style>,
 typedef ButtonAttr = {>GlobalAttr<Style>,
   @:optional var disabled(default, never):Bool;
   @:optional var autofocus(default, never):Bool;
+  @:optional var value(default, never):String;
   @:optional var type(default, never):String;
   @:optional var name(default, never):String;
 }
@@ -105,6 +123,7 @@ typedef TextAreaAttr = {>GlobalAttr<Style>,
   @:optional var disabled(default, never):Bool;
   @:optional var form(default, never):String;
   @:optional var maxLength(default, never):Int;
+  @:optional var minLength(default, never):Int;
   @:optional var name(default, never):String;
   @:optional var placeholder(default, never):String;
   @:optional var readOnly(default, never):Bool;
@@ -218,6 +237,7 @@ typedef FormAttr = {>GlobalAttr<Style>,
 }
 
 typedef AnchorAttr = {>GlobalAttr<Style>,
+  @:optional var download(default, never):String;
   @:optional var href(default, never):String;
   @:optional var target(default, never):AnchorTarget;
   @:optional var type(default, never):String;

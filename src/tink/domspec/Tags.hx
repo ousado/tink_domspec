@@ -15,6 +15,7 @@ typedef Tags = {
     var code:GlobalAttr<Style>;
     var aside:GlobalAttr<Style>;
     var article:GlobalAttr<Style>;
+    var address:GlobalAttr<Style>;
     var blockquote:GlobalAttr<Style>;
     var section:GlobalAttr<Style>;
     var header:GlobalAttr<Style>;
@@ -22,6 +23,7 @@ typedef Tags = {
     var main:GlobalAttr<Style>;
     var nav:GlobalAttr<Style>;
     var table:GlobalAttr<Style>;
+    var caption:GlobalAttr<Style>;
     var thead:GlobalAttr<Style>;
     var tbody:GlobalAttr<Style>;
     var tfoot:GlobalAttr<Style>;
@@ -60,10 +62,15 @@ typedef Tags = {
     var legend:GlobalAttr<Style>;
     var select:SelectAttr;
     var option:OptionAttr;
+    var data:DataAttr;
+    var datalist:GlobalAttr<Style>;
     var dl:GlobalAttr<Style>;
     var dt:GlobalAttr<Style>;
     var dd:GlobalAttr<Style>;
     var details:#if haxe4 DetailsAttr #else GlobalAttr<Style>#end;
+    #if (haxe_ver >= 4.3) var dialog:DialogAttr; #end
+    var figcaption:GlobalAttr<Style>;
+    var figure:GlobalAttr<Style>;
     var summary:GlobalAttr<Style>;
     var sub:GlobalAttr<Style>;
     var sup:GlobalAttr<Style>;
